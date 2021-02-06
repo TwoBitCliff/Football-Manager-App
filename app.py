@@ -18,10 +18,10 @@ mongo=PyMongo(app)
 
 
 @app.route("/")
-@app.route("/get_players")
+@app.route("/get_squad")
 def get_squad():
     squad = mongo.db.squad.find()
-    return render_template("squad.html", squad=squad)
+    return render_template("base.html", squad=squad)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
