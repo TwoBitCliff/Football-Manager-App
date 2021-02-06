@@ -11,3 +11,12 @@ nav ul li {
     margin-right: 10px;
 }
 
+.input-field.col label, .input-field.col {
+    color: white;
+}
+
+.submit-btn{
+    font-weight: 500;
+    font-size: 25px;
+    color: #00897b;
+}
