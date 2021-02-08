@@ -18,10 +18,14 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-@app.route("/")
-@app.route("/get_profile")
-def get_profile():
-    return render_template("base.html")
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    # grab the session user's username from db
+    first_name = mongo.db.users.find()
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    return render_template(
+        "profile.html", username=username, first_name=first_name)
 
 
 @app.route("/")
@@ -86,6 +90,34 @@ def log_in():
             return redirect(url_for("log_in"))
 
     return render_template("login.html")
+
+# session["user"]
+
+
+@app.route("/add_player", methods={"GET", "POST"})
+def add_player():
+    if request.method == "POST":
+        injured = "on" if request.form.get("injured") else "off"
+        player = {
+            "first_name": request.form.get("first_name"),
+            "last_name": request.form.get("last_name"),
+            "age": request.form.get("age"),
+            "position": request.form.get("position"),
+            "foot": request.form.get("foot"),
+            "played": request.form.get("played"),
+            "goals": request.form.get("goals"),
+            "assists": request.form.get("assists"),
+            "yellow": request.form.get("yellow"),
+            "red": request.form.get("red"),
+            "email": request.form.get("email"),
+            "contact_number": request.form.get("contact_number"),
+            "injured": injured
+        }
+        mongo.db.squad.insert_one(player)
+        flash("Player Successfully Added")
+        return redirect(url_for("get_squad"))
+    player = mongo.db.squad.find()
+    return render_template("add_squad.html", player=player)
 
 
 if __name__ == "__main__":
