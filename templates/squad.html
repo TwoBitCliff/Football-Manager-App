@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+<div class="col m10 offset-m1 s12">
+<table>
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th class="hidden">Age</th>
+            <th>Position</th>
+            <th class="hidden">Foot</th>
+            <th>Apps</th>
+            <th>Goals</th>
+            <th class="hidden">Assists</th>
+            <th><i class="fas fa-square red-card fa-2x"></i></th>
+            <th><i class="fas fa-square yellow-card fa-2x"></i></th>
+            <th class="hidden">Injued</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+{% for player in squad %}
+    <td>{{ player.first_name.capitalize() }}</td>
+    <td>{{ player.last_name.capitalize() }}</td>
+    <td class="hidden">{{ player.age }}</td>
+    <td>{{ player.position }}</td>
+    <td class="hidden">{{ player.foot }}</td>
+    <td>{{ player.played }}</td>
+    <td>{{ player.goals }}</td>
+    <td class="hidden">{{ player.assists }}</td>
+    <td>{{ player.yellow }}</td>
+    <td>{{ player.red }}</td>
+    <td class="hidden">{{ player.injured }}</td>
+        </tr>
+    </tbody>
+   
+</table>
+
+</div>
+</div>
+{% endfor %}
+
+
+
+{% endblock %}

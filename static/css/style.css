@@ -20,3 +20,20 @@ nav ul li {
     font-size: 25px;
     color: #00897b;
 }
+
+.red-card{
+    background-color: red;
+    color: red;
+}
+
+.yellow-card{
+    background-color: yellow;
+    color: yellow;
+}
+
+@media only screen and (max-width: 688px) {
+    .hidden {
+        display: none;
+    }
+
+}
