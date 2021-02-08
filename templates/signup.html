@@ -1,61 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
 
+  <h3 class="center-align">Register</h3>
 
-<div class="row">
-    <div class="col s12 m6 offset-m3">
-        <div class="card-panel teal darken-1">
-            <div class="row">
-                <form class="col s12" method="POST" action="{{ url_for('sign_up') }}">
-                    <!-- Name -->
-                    <div class="row">                        
-                        <div class="input-field col s6">
-                            <input id="first_name" type="text" class="validate">
-                            <label for="first_name">First Name</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <input id="last_name" type="text" class="validate">
-                            <label for="last_name">Last Name</label>
-                        </div>
+    <div class="row">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
+            <div class="card-panel">
+                <!-- username -->
+                <div class="row">
+					<div class="input-field col s12">
+						<i class="fas fa-user-plus prefix teal-text text-darken-1"></i>
+						<input id="username" name="username" type="text" minlength="5"
+                            maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+						<label for="username">Username</label>
+					</div>
+                </div>
+                <!-- passowrd -->
+                <div class="row">
+                    <div class="input-field col s12">
+						<i class="fas fa-user-lock prefix teal-text text-darken-1"></i>
+                        <input id="password" name="password" type="password" minlength="5"
+                            maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                        <label for="password">Password</label>
                     </div>
-                         <!-- Team Name -->
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="team_name" type="text" class="validate">
-                            <label for="team_name">Team Name</label>
-                        </div>
-                    </div>
-                         <!-- Contact Number -->
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="contact_number" type="text" class="validate">
-                            <label for="contact_number">Contact Number</label>
-                        </div>
-                    </div>                    
-                        <!-- Email -->
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="email" type="email" class="validate">
-                            <label for="email">Email</label>
-                        </div>
-                    </div>
-                        <!-- Password -->
-                    <div class="row">                        
-                        <div class="input-field col s12">
-                            <input id="password" type="password" class="validate">
-                            <label for="password">Password</label>
-                        </div>
-                    </div>
-                    <div class="row"> <button type="submit"
-                            class="col submit-btn s2 offset-m5 btn-large yellow accent-4">Submit!</button>
-                    </div>
-                </form>
+                </div>
+                <!-- register -->
+                <div class="row">
+                    <button type="submit" class="col s12 btn-large teal darken-1">
+                        Register <i class="fas fa-sign-in-alt"></i>
+                    </button>
+                </div>
             </div>
-
-            <div class="row"></div>
-        </div>
+        </form>
     </div>
-</div>
+
 
 
 

@@ -31,7 +31,7 @@
                     <li><a href="{{ url_for('get_squad') }}"><i class="fas fa-user-friends fa-3x nav-icon"></i>Squad</a>
                     </li>
                     <li><a href="{{ url_for('get_fixtures') }}"><i class="fas fa-table fa-3x nav-icon"></i>Fixtures</a></li>
-                    <li><a href="{{ url_for('sign_up') }}"><i class="fas fa-user-plus fa-3x nav-icon"></i>Sign Up</a>
+                    <li><a href="{{ url_for('register') }}"><i class="fas fa-user-plus fa-3x nav-icon"></i>Sign Up</a>
                     </li>
                     <li><a href="#"><i class="fas fa-sign-in-alt fa-3x nav-icon"></i>Log In</a></li>
 
@@ -43,10 +43,22 @@
             <li><a href="#"><i class="fas fa-user fa-2x nav-icon"></i>Profile</a></li>
             <li><a href="{{ url_for('get_squad') }}"><i class="fas fa-user-friends fa-2x nav-icon"></i>Squad</a></li>
             <li><a href="{{ url_for('get_fixtures') }}"><i class="fas fa-table fa-2x nav-icon"></i>Fixtures</a></li>
-            <li><a href="{{ url_for('sign_up') }}"><i class="fas fa-user-plus fa-2x nav-icon"></i>Sign Up</a></li>
+            <li><a href="{{ url_for('register') }}"><i class="fas fa-user-plus fa-2x nav-icon"></i>Sign Up</a></li>
             <li><a href="#"><i class="fas fa-sign-in-alt fa-2x nav-icon"></i>Log In</a></li>
         </ul>
     </header>
+      <section>
+        <!-- flash messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="row flashes">
+                        <h4 class="teal lighten-1 white-text center-align">{{ message }}</h4>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
 
    
         {% block content %}

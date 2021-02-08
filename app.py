@@ -39,34 +39,29 @@ def get_fixtures():
     return render_template("fixtures.html", fixtures=fixtures, result=result)
 
 
-@app.route("/sign_up", methods=["GET", "POST"])
-def sign_up():
-
+@app.route("/register", methods=["GET", "POST"])
+def register():
     if request.method == "POST":
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
-            {"email": request.form.get("email").lower()})
+            {"username": request.form.get("username").lower()})
 
         if existing_user:
             flash("Username already exists")
-            return redirect(url_for("sign_up"))
+            return redirect(url_for("register"))
 
-        sign_up = {
-            "email": request.form.get("email").lower(),
-            "password": generate_password_hash(request.form.get("password")),
-            "first_name": request.form.get("first_name").capitalize(),
-            "last_name": request.form.get("last_name").capitalize(),
-            "contact_number": request.form.get("contact_number"),
-            "team_name": request.form.get("team_name").capitalize()
+        register = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
         }
-        mongo.db.users.insert_one(sign_up)
+        mongo.db.users.insert_one(register)
 
         # put the new user into 'session' cookie
-        session["user"] = request.form.get("email").lower()
+        session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
-
-        session["user"] = request.form.get("first_name")
     return render_template("signup.html")
+
+
 
 
 if __name__ == "__main__":
