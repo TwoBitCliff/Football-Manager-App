@@ -19,10 +19,17 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
+@app.route("/get_profile")
+def get_profile():
+    squad = mongo.db.squad.find()
+    return render_template("base.html", squad=squad)
+
+
+@app.route("/")
 @app.route("/get_squad")
 def get_squad():
     squad = mongo.db.squad.find()
-    return render_template("base.html", squad=squad)
+    return render_template("squad.html", squad=squad)
 
 
 @app.route("/sign_up", methods=["GET", "POST"])
