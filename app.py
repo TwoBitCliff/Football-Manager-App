@@ -21,8 +21,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_profile")
 def get_profile():
-    squad = mongo.db.squad.find()
-    return render_template("base.html", squad=squad)
+    return render_template("base.html")
 
 
 @app.route("/")
@@ -30,6 +29,14 @@ def get_profile():
 def get_squad():
     squad = mongo.db.squad.find()
     return render_template("squad.html", squad=squad)
+
+
+@app.route("/")
+@app.route("/get_fixtures")
+def get_fixtures():
+    fixtures = mongo.db.fixtures.find()
+    result = mongo.db.result.find()
+    return render_template("fixtures.html", fixtures=fixtures, result=result)
 
 
 @app.route("/sign_up", methods=["GET", "POST"])
