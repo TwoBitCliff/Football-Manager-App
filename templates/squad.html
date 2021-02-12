@@ -26,10 +26,10 @@
                 <tr>
                     <td>
                         <!-- Modal Trigger -->
-                        <a href="{{ url_for('update_player', player_id=player._id) }}"><button data-target="modal1" class="btn modal-trigger"><i
+                        <!-- <a href="{{ url_for('update_player', player_id=player._id) }}"><button data-target="modal1" class="btn modal-trigger"><i
                                     class="far fa-edit"></i></button>
-                        </a>
-                        <!-- <a href="{{ url_for('update_player', player_id=player._id) }}" class="btn"><i class="far fa-edit"></i></a> -->
+                        </a> -->
+                        <a href="{{ url_for('update_player', player_id=player._id) }}" class="btn"><i class="far fa-edit"></i></a>
                     </td>
                     <td>{{ player.first_name.capitalize() }}</td>
                     <td>{{ player.last_name.capitalize() }}</td>
@@ -148,9 +148,9 @@
 
 
 <!-- Modal Structure -->
-<div id="modal1" class="modal">
+<!-- <div id="modal1" class="modal">
     <div class="modal-content">
-        <form class="col s12" method="POST" action="{{ url_for('update_player', player_id=player._id) }}">
+        <form class="col s12" method="POST" action="#">
                     <div class="row">
                         <div class="input-field col s6">
                             <input placeholder="Arsène" name="first_name_update" id="first_name_update" type="text" class="validate">
@@ -236,5 +236,5 @@
                 </form>
             <div class="modal-footer">
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-            </div>
+            </div> -->
 {% endblock %}
