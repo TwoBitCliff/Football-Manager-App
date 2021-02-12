@@ -91,10 +91,8 @@ def log_in():
 
     return render_template("login.html")
 
-# session["user"]
 
-
-@app.route("/add_player", methods={"GET", "POST"})
+@app.route("/add_player", methods=["GET", "POST"])
 def add_player():
     if request.method == "POST":
         injured = "on" if request.form.get("injured") else "off"
@@ -116,8 +114,35 @@ def add_player():
         mongo.db.squad.insert_one(player)
         flash("Player Successfully Added")
         return redirect(url_for("get_squad"))
-    player = mongo.db.squad.find()
-    return render_template("add_squad.html", player=player)
+    squad = mongo.db.squad.find()
+    return render_template("squad.html", squad=squad)
+
+
+@app.route("/udpate_player/<player_id>", methods=["GET", "POST"])
+def update_player(player_id):
+    if request.method == "POST":
+        injured = "on" if request.form.get("injured") else "off"
+        submit = {
+            "first_name": request.form.get("first_name"),
+            "last_name": request.form.get("last_name"),
+            "age": request.form.get("age"),
+            "position": request.form.get("position"),
+            "foot": request.form.get("foot"),
+            "played": request.form.get("played"),
+            "goals": request.form.get("goals"),
+            "assists": request.form.get("assists"),
+            "yellow": request.form.get("yellow"),
+            "red": request.form.get("red"),
+            "email": request.form.get("email"),
+            "contact_number": request.form.get("contact_number"),
+            "injured": injured
+        }
+        mongo.db.squad.update({"_id": ObjectId(player_id)}, submit)
+        flash("Player Successfully Updated")
+        return redirect(url_for("get_squad"))
+    player = mongo.db.squad.find_one({"_id": ObjectId(player_id)})
+    squad = mongo.db.squad.find()
+    return render_template("edit_player.html", player=player, squad=squad)
 
 
 if __name__ == "__main__":
