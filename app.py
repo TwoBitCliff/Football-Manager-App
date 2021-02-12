@@ -24,8 +24,12 @@ def profile(username):
     first_name = mongo.db.users.find()
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    return render_template(
-        "profile.html", username=username, first_name=first_name)
+
+    if session["user"]:
+        return render_template(
+            "profile.html", username=username, first_name=first_name)
+
+    return redirect(url_for("log_in"))
 
 
 @app.route("/")
@@ -79,6 +83,8 @@ def log_in():
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(request.form.get("username")))
+                return redirect(url_for(
+                            "profile", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -90,6 +96,14 @@ def log_in():
             return redirect(url_for("log_in"))
 
     return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    # remove user from session cookie
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect(url_for("log_in"))
 
 
 @app.route("/add_player", methods=["GET", "POST"])
