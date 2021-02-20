@@ -45,7 +45,7 @@
                 <tbody>
                     <!-- Create a way for on created_by user players to be shown -->
                     {% for player in squad %}
-
+                    {% if session.user|lower == player.created_by|lower %}
                     <tr>
                         <td>
                             <!-- Modal Trigger -->
@@ -68,6 +68,7 @@
                         <td>{{ player.red }}</td>
                         <td class="hidden">{{ player.injured }}</td>
                     </tr>
+                    {% endif %}
 
                     {% endfor %}
 
