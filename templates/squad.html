@@ -7,6 +7,7 @@
             <thead>
                 <tr>
                     <th>Edit</th>
+                    <th>Delete</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th class="hidden">Age</th>
@@ -21,16 +22,19 @@
                 </tr>
             </thead>
             <tbody>
-
+               <!-- Create a way for on created_by user players to be shown -->
                 {% for player in squad %}
+                
                 <tr>
                     <td>
                         <!-- Modal Trigger -->
                         <!-- <a href="{{ url_for('update_player', player_id=player._id) }}"><button data-target="modal1" class="btn modal-trigger"><i
                                     class="far fa-edit"></i></button>
                         </a> -->
-                        <a href="{{ url_for('update_player', player_id=player._id) }}" class="btn"><i class="far fa-edit"></i></a>
+                        <a href="{{ url_for('update_player', player_id=player._id) }}" class="btn"><i class="fas fa-user-edit"></i></a>
+                       
                     </td>
+                    <td> <a href="{{ url_for('delete_player', player_id=player._id) }}" class="btn"><i class="fas fa-user-times"></i></a></td>
                     <td>{{ player.first_name.capitalize() }}</td>
                     <td>{{ player.last_name.capitalize() }}</td>
                     <td class="hidden">{{ player.age }}</td>
@@ -43,8 +47,9 @@
                     <td>{{ player.red }}</td>
                     <td class="hidden">{{ player.injured }}</td>
                 </tr>
+                
                 {% endfor %}
-
+                
             </tbody>
 
         </table>

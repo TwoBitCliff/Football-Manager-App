@@ -160,6 +160,13 @@ def update_player(player_id):
     return render_template("edit_player.html", player=player, squad=squad)
 
 
+@app.route("/delete_player/<player_id>")
+def delete_player(player_id):
+    mongo.db.squad.remove({"_id": ObjectId(player_id)})
+    flash("Player Successfully Deleted")
+    return redirect(url_for("get_squad"))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
