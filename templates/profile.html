@@ -4,9 +4,13 @@
 <div class="row">
     <div class="col s12 m4 offset-m4">
         <div class="card-panel teal">
-            <h1>Team Name</h1>
+            {% for manager in managers %}
+
+            {% if session.user|lower == manager.created_by|lower %}
+
+            <h1>{{ manager.team_name.upper() }}</h1>
             <br>
-            <h2>Manager Name</h2>
+            <h2>{{ manager.first_name.capitalize() }} {{ manager.last_name.capitalize() }}</h2>
             <div class="row">
                 <a href="{{ url_for('get_squad') }}"><button class="col s12 btn-large teal darken-1">
                         Update Squad
@@ -17,17 +21,20 @@
                     Update Fixtures
                 </button>
             </div>
-            <div class="row">
-                <!-- Modal Trigger -->
-                <button data-target="modal1" class="btn modal-trigger">Update Profile</button>
-
-            </div>
             <!-- <div class="row">
-                <a href="#"> <button type="submit" class="col s12 btn-large teal darken-1">
-                        Sign Out
-                    </button>
-                </a>
-            </div> -->
+                    <a href="#"> <button type="submit" class="col s12 btn-large teal darken-1">
+                            Sign Out
+                        </button>
+                    </a>
+                </div> -->
+            <div class="row">
+                 <a href="{{ url_for('edit_manager', manager_id=manager._id) }}"><button class="col s12 btn-large teal darken-1">
+                        Update Profile
+                    </button></a>
+            </div>
+            {% endif %}
+
+            {% endfor %}
         </div>
     </div>
 </div>
@@ -75,4 +82,4 @@
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
             </div>
 
-{% endblock %}
+            {% endblock %}
