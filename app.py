@@ -39,6 +39,13 @@ def get_squad():
     return render_template("squad.html", squad=squad)
 
 
+@app.route("/search_player", methods=["GET", "POST"])
+def search_player():
+    search = request.form.get("search")
+    squad = mongo.db.squad.find({"$text": {"$search": search}})
+    return render_template("squad.html", squad=squad)
+
+
 @app.route("/")
 @app.route("/get_fixtures")
 def get_fixtures():
@@ -165,6 +172,7 @@ def delete_player(player_id):
     mongo.db.squad.remove({"_id": ObjectId(player_id)})
     flash("Player Successfully Deleted")
     return redirect(url_for("get_squad"))
+
 
 
 if __name__ == "__main__":
