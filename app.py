@@ -21,15 +21,35 @@ mongo = PyMongo(app)
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # grab the session user's username from db
-    first_name = mongo.db.users.find()
+    managers = mongo.db.managers.find()
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
     if session["user"]:
         return render_template(
-            "profile.html", username=username, first_name=first_name)
+            "profile.html", username=username, managers=managers)
 
     return redirect(url_for("log_in"))
+
+
+@app.route("/edit_manager/<manager_id>", methods=["GET", "POST"])
+def edit_manager(manager_id):
+    if request.method == "POST":
+        submit = {
+            "first_name": request.form.get("first_name"),
+            "last_name": request.form.get("last_name"),
+            "team_name": request.form.get("team_name"),
+            "email": request.form.get("email"),
+            "contact_number": request.form.get("contact_number"),
+            "created_by": session["user"]
+        }
+        mongo.db.managers.update({"_id": ObjectId(manager_id)}, submit)
+        flash("Manager Successfully Updated")
+        return redirect(url_for('profile', username=session['user']))
+    manager = mongo.db.managers.find_one({"_id": ObjectId(manager_id)})
+    managers = mongo.db.managers.find()
+    return render_template(
+        "edit_manager.html", manager=manager, managers=managers)
 
 
 @app.route("/")
@@ -91,7 +111,7 @@ def log_in():
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(request.form.get("username")))
                 return redirect(url_for(
-                            "profile", username=session["user"]))
+                    "profile", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -172,7 +192,6 @@ def delete_player(player_id):
     mongo.db.squad.remove({"_id": ObjectId(player_id)})
     flash("Player Successfully Deleted")
     return redirect(url_for("get_squad"))
-
 
 
 if __name__ == "__main__":
