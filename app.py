@@ -123,7 +123,8 @@ def add_player():
             "red": request.form.get("red"),
             "email": request.form.get("email"),
             "contact_number": request.form.get("contact_number"),
-            "injured": injured
+            "injured": injured,
+            "created_by": session["user"]
         }
         mongo.db.squad.insert_one(player)
         flash("Player Successfully Added")
