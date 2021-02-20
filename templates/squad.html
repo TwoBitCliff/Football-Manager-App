@@ -20,8 +20,6 @@
                 </div>
             </form>
         </div>
-
-
     </div>
     <div class="row">
         <div class="col m10 offset-m1 s12">
@@ -66,7 +64,14 @@
                         <td class="hidden">{{ player.assists }}</td>
                         <td>{{ player.yellow }}</td>
                         <td>{{ player.red }}</td>
-                        <td class="hidden">{{ player.injured }}</td>
+                        <td class="hidden">
+                            {% if player.injured == "on" %}
+                            <i class="fas fa-user-injured fa-2x injured"></i>
+                            {% else %}
+                            <i class="fas fa-user-injured fa-2x uninjuerd"></i>
+                            {% endif %}
+
+                        </td>
                     </tr>
                     {% endif %}
 

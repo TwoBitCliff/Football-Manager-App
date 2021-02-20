@@ -37,3 +37,11 @@ nav ul li {
     }
 
 }
+
+.injured {
+    color: red;
+}
+
+.uninjuerd {
+    color: green;
+}
