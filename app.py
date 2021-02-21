@@ -133,6 +133,25 @@ def logout():
     return redirect(url_for("log_in"))
 
 
+@app.route("/add_fixture", methods=["GET", "POST"])
+def add_fixture():
+    if request.method == "POST":
+        fixture = {
+            "home_team": request.form.get("home_team"),
+            "away_team": request.form.get("away_team"),
+            "date": request.form.get("date"),
+            "kick_off": request.form.get("kick_off"),
+            "home_goals": "null",
+            "away_goals": "null",
+            "created_by": session["user"]
+        }
+        mongo.db.fixtures.insert_one(fixture)
+        flash("Fixture Successfully Added")
+        return redirect(url_for("get_fixtures"))
+    fixture = mongo.db.fixtures.find()
+    return render_template("add_fixture.html", fixture=fixture)
+
+
 @app.route("/add_player", methods=["GET", "POST"])
 def add_player():
     if request.method == "POST":
