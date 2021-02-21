@@ -31,13 +31,6 @@ nav ul li {
     color: yellow;
 }
 
-@media only screen and (max-width: 688px) {
-    .hidden {
-        display: none;
-    }
-
-}
-
 .injured {
     color: red;
 }
