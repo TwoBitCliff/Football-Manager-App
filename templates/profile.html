@@ -17,9 +17,11 @@
                     </button></a>
             </div>
             <div class="row">
-                <button type="submit" class="col s12 btn-large teal darken-1">
-                    Update Fixtures
-                </button>
+                <a href="{{ url_for('add_fixture') }}">
+                    <button type="submit" class="col s12 btn-large teal darken-1">
+                        Update Fixtures
+                    </button>
+                </a>
             </div>
             <!-- <div class="row">
                     <a href="#"> <button type="submit" class="col s12 btn-large teal darken-1">
@@ -28,7 +30,8 @@
                     </a>
                 </div> -->
             <div class="row">
-                 <a href="{{ url_for('edit_manager', manager_id=manager._id) }}"><button class="col s12 btn-large teal darken-1">
+                <a href="{{ url_for('edit_manager', manager_id=manager._id) }}"><button
+                        class="col s12 btn-large teal darken-1">
                         Update Profile
                     </button></a>
             </div>
