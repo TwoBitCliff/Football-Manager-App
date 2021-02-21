@@ -17,45 +17,46 @@
     </thead>
     <tbody>
 
-        
-        {% for team in fixtures %}
+
+        {% for fixture in fixtures %}
+        {% if fixture.home_goals == "null" %}
         <tr>
-            <td>{{ team.date }}</td>
-            <td>{{ team.team_name }}</td>
-            <td>{{ team.kick_off }}</td>
-            <td>{{ team.venue }}</td>
+            <td>{{ fixture.date }}</td>
+            <td>{{ fixture.home_team }}</td>
+            <td>{{ fixture.kick_off }}</td>
+            <td>{{ fixture.away_team }}</td>
         </tr>
+        {% endif %}
         {% endfor %}
 
     </tbody>
 
 </table>
+
+
 <!-- Results Table -->
 <table>
     <thead>
         <h1>Results</h1>
         <tr>
             <th>Date</th>
-            <th>Home</th>
-            <th></th>
-            <th>                
-            </th>
+            <th>Home</th>                        
             <th></th>
             <th>Away</th>
 
         </tr>
     </thead>
     <tbody>
-        
-        {% for score in result %}
+
+        {% for result in results %}
+        {% if result.home_goals != "null" %}
         <tr>
-            <td>{{ score.date }}</td>
-            <td>{{ score.team_name }}</td>
-            <td>{{ score.conceded }}</td>
-            <td>-</td>
-            <td>{{ score.scored }}</td>
-            <td>Team Name</td>
+            <td>{{ result.date }}</td>
+            <td>{{ result.home_team }}</td>
+            <td>{{ result.home_goals }} - {{ result.away_goals }}</td>
+            <td>{{ result.away_team }}</td>
         </tr>
+        {% endif %}
         {% endfor %}
 
     </tbody>

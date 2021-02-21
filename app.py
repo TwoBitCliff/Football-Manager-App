@@ -70,8 +70,8 @@ def search_player():
 @app.route("/get_fixtures")
 def get_fixtures():
     fixtures = mongo.db.fixtures.find()
-    result = mongo.db.result.find()
-    return render_template("fixtures.html", fixtures=fixtures, result=result)
+    results = mongo.db.fixtures.find()
+    return render_template("fixtures.html", fixtures=fixtures, results=results)
 
 
 @app.route("/register", methods=["GET", "POST"])
