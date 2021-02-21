@@ -41,7 +41,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Create a way for on created_by user players to be shown -->
+                    
                     {% for player in squad %}
                     {% if session.user|lower == player.created_by|lower %}
                     <tr>

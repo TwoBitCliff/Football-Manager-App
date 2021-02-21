@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col m2 offset-m5">
+        <h1>Update Fixture</h1>
+    </div>
+</div>
+
+<!-- <div class="row"> -->
+<div class="col s12 m6 offset-m3">
+    <form class="col s12" method="POST" action="{{ url_for('update_fixture', fixture_id=fixture._id) }}">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input value="{{ fixture.home_team }}" name="home_team" id="home_team" type="text"></td>
+                    <td> <input value="{{ fixture.home_goals }}" name="home_goals" id="home_goals" type="int"
+                            class="validate"></td>
+                    <td> <input value="{{ fixture.away_goals }}" name="away_goals" id="away_goals" type="int"
+                            class="validate"></td>
+                    <td><input value="{{ fixture.away_team }}" name="away_team" id="away_team" type="text"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col m6">
+                <input value="{{ fixture.date }}" id="date" name="date" type="text" class="datepicker validate"
+                    required>
+                <label for="date">Date</label>
+            </div>
+            <div class="col m6">
+                <input value="{{ fixture.kick_off }}" id="kick_off" name="kick_off" type="text"
+                    class="timepicker validate" required>
+                <label for="kick_off">Kick Off</label>
+            </div>
+            <div class="row">
+                <button type="submit" class="col s12 btn-large teal darken-1">
+                    Update
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+    <div class="row">
+        <a href="{{url_for('get_fixtures') }}"><button type="submit" class="col s12 btn-large teal darken-1">
+                Cancel
+            </button>
+        </a>
+    </div>
+</div>
+
+
+{% endblock %}
