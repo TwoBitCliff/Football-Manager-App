@@ -26,18 +26,18 @@
             <table>
                 <thead>
                     <tr>
-                        <th></th>
+                        <th class="hide-on-small-only"></th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th class="hidden">Age</th>
+                        <th class="hide-on-med-and-down">Age</th>
                         <th>Position</th>
-                        <th class="hidden">Foot</th>
+                        <th class="hide-on-med-and-down">Foot</th>
                         <th>Apps</th>
                         <th>Goals</th>
-                        <th class="hidden">Assists</th>
+                        <th class="hide-on-med-and-down">Assists</th>
                         <th><i class="fas fa-square red-card fa-2x"></i></th>
                         <th><i class="fas fa-square yellow-card fa-2x"></i></th>
-                        <th class="hidden">Injued</th>
+                        <th class="hide-on-med-and-down">Injued</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,21 +50,21 @@
                             <!-- <a href="{{ url_for('update_player', player_id=player._id) }}"><button data-target="modal1" class="btn modal-trigger"><i
                                     class="far fa-edit"></i></button>
                         </a> -->
-                            <a href="{{ url_for('update_player', player_id=player._id) }}" class="btn"><i
+                            <a href="{{ url_for('update_player', player_id=player._id) }}" class="btn hide-on-small-only"><i
                                     class="fas fa-user-edit"></i></a>
-                            <a href="{{ url_for('delete_player', player_id=player._id) }}" class="btn"><i
+                            <a href="{{ url_for('delete_player', player_id=player._id) }}" class="btn hide-on-small-only"><i
                                     class="fas fa-user-times"></i></a></td>
                         <td>{{ player.first_name.capitalize() }}</td>
                         <td>{{ player.last_name.capitalize() }}</td>
-                        <td class="hidden">{{ player.age }}</td>
+                        <td class="hide-on-med-and-down">{{ player.age }}</td>
                         <td>{{ player.position }}</td>
-                        <td class="hidden">{{ player.foot }}</td>
+                        <td class="hide-on-med-and-down">{{ player.foot }}</td>
                         <td>{{ player.played }}</td>
                         <td>{{ player.goals }}</td>
-                        <td class="hidden">{{ player.assists }}</td>
+                        <td class="hide-on-med-and-down">{{ player.assists }}</td>
                         <td>{{ player.yellow }}</td>
                         <td>{{ player.red }}</td>
-                        <td class="hidden">
+                        <td class="hide-on-med-and-down">
                             {% if player.injured == "on" %}
                             <i class="fas fa-user-injured fa-2x injured"></i>
                             {% else %}
