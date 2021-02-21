@@ -19,16 +19,17 @@
             <div class="row">
                 <a href="{{ url_for('add_fixture') }}">
                     <button type="submit" class="col s12 btn-large teal darken-1">
-                        Update Fixtures
+                        Create Fixtures
                     </button>
                 </a>
             </div>
-            <!-- <div class="row">
-                    <a href="#"> <button type="submit" class="col s12 btn-large teal darken-1">
-                            Sign Out
-                        </button>
-                    </a>
-                </div> -->
+              <div class="row">
+                <a href="{{ url_for('get_fixtures') }}">
+                    <button type="submit" class="col s12 btn-large teal darken-1">
+                        Update Fixtures/ Results
+                    </button>
+                </a>
+            </div>
             <div class="row">
                 <a href="{{ url_for('edit_manager', manager_id=manager._id) }}"><button
                         class="col s12 btn-large teal darken-1">
