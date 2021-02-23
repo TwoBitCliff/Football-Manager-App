@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="row">
-    <div class="col m2 offset-m5">
-        <h1>Update Result</h1>
-    </div>
-</div>
 
-<!-- <div class="row"> -->
-<div class="col s12 m6 offset-m3">
-    <form class="col s12" method="POST" action="{{ url_for('update_result', result_id=result._id) }}">
+<div class="row">
+    <div class="col s12 m4 offset-m4">
+        <div class="card-panel teal">
+            <h1 class="title">Update Result</h1>
+            <br>
+            <div class="row">
+                <form class="col s12" method="POST" action="{{ url_for('update_result', result_id=result._id) }}">
         <table>
             <thead>
                 <tr>
@@ -47,12 +46,16 @@
             </div>
         </div>
     </form>
-    <div class="row">
-        <a href="{{url_for('get_fixtures') }}"><button type="submit" class="col s12 btn-large teal darken-1">
-                Cancel
-            </button>
-        </a>
+                <a href="{{url_for('get_fixtures') }}"><button type="submit" class="col s12 btn-large teal darken-1">
+                        Cancel
+                    </button>
+                </a>
+            </div>
+        </div>
     </div>
+</div>
+<!-- <div class="row"> -->
+
 
 
 
