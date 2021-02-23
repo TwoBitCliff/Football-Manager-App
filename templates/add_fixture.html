@@ -1,50 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="row">
-    <div class="col m2 offset-m5">
-        <h1 class="title">New Fixture</h1>
-    </div>
-</div>
+
 <div class="row">
     <div class="col s12 m4 offset-m4">
-      <div class="card-panel teal">
-          <h1 class="title">New Fixture</h1>
-          <br>
-          <div class="row">
-        <form class="col m12" method="POST" action="{{ url_for('add_fixture') }}">
-        <div class="row">
-            <div class="input-field col s6">
-                <input placeholder="Home Team" name="home_team" id="home_team" type="text" class="validate">
-                <label for="home_team">Home Team</label>
-            </div>
-            <div class="input-field col s6">
-                <input placeholder="Away Team" name="away_team" id="away_team" type="text" class="validate">
-                <label for="away_team">Home Team</label>
+        <div class="card-panel teal">
+            <h1 class="title">New Fixture</h1>
+            <br>
+            <div class="row">
+                <form class="col m12" method="POST" action="{{ url_for('add_fixture') }}">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Home Team" name="home_team" id="home_team" type="text" class="validate">
+                            <label for="home_team">Home Team</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="Away Team" name="away_team" id="away_team" type="text" class="validate">
+                            <label for="away_team">Home Team</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m6">
+                            <input id="date" name="date" type="text" class="datepicker validate" required>
+                            <label for="date">Date</label>
+                        </div>
+                        <div class="col m6">
+                            <input id="kick_off" name="kick_off" type="text" class="timepicker validate" required>
+                            <label for="kick_off">Kick Off</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="col s12 btn-large teal darken-1">
+                            Create
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="row">
-            <div class="col m6">
-                <input id="date" name="date" type="text" class="datepicker validate" required>
-                <label for="date">Date</label>
-            </div>
-            <div class="col m6">
-                <input id="kick_off" name="kick_off" type="text" class="timepicker validate" required>
-                <label for="kick_off">Kick Off</label>
-            </div>
-        </div>
-        <div class="row">
-            <button type="submit" class="col s12 btn-large teal darken-1">
-                Create
-            </button>
-        </div>
-    </form>
-      </div>
     </div>
-  </div>
-            
-
-
-    
 </div>
 
 {% endblock %}
