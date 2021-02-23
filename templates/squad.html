@@ -3,7 +3,6 @@
 
 <div class="row">
     <div class="col s12 m6 offset-m3">
-
         <div class="row card-panel teal">
             <form action="{{ url_for('search_player') }}" method="post" class="col s12">
                 <div class="row valign-wrapper center-align">
@@ -91,56 +90,56 @@
                     <form class="col s12" method="POST" action="{{ url_for('add_player') }}">
                         <div class="row">
                             <div class="input-field col s6">
-                                <input placeholder="Arsène" name="first_name" id="first_name" type="text"
-                                    class="validate">
+                                <input placeholder="Thierry" name="first_name" id="first_name" type="text"
+                                    class="validate" required>
                                 <label for="first_name">First Name</label>
                             </div>
                             <div class="input-field col s6">
-                                <input placeholder="Wenger" name="last_name" id="last_name" type="text"
-                                    class="validate">
+                                <input placeholder="Henry" name="last_name" id="last_name" type="text"
+                                    class="validate" required>
                                 <label for="last_name">Last Name</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s4">
-                                <input placeholder="28" name="age" id="age" type="number" class="validate">
+                                <input placeholder="28" name="age" id="age" type="number" class="validate" required>
                                 <label for="age">Age</label>
                             </div>
 
                             <div class="input-field col s4">
-                                <input placeholder="STR" name="position" id="position" type="text" class="validate">
+                                <input placeholder="STR" name="position" id="position" type="text" class="validate" required>
                                 <label for="position">Position</label>
                             </div>
 
                             <div class="input-field col s4">
-                                <input placeholder="Right" name="foot" id="foot" type="text" class="validate">
+                                <input placeholder="Right" name="foot" id="foot" type="text" class="validate" required>
                                 <label for="foot">Foot</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s4">
-                                <input placeholder="0" name="played" id="played" type="text" class="validate">
+                                <input placeholder="0" name="played" id="played" type="text" class="validate" required>
                                 <label for="played">Appearances</label>
                             </div>
 
                             <div class="input-field col s4">
-                                <input placeholder="0" name="goals" id="goals" type="text" class="validate">
+                                <input placeholder="0" name="goals" id="goals" type="text" class="validate" required>
                                 <label for="goals">Goals</label>
                             </div>
 
                             <div class="input-field col s4">
-                                <input placeholder="0" name="assists" id="assists" type="text" class="validate">
+                                <input placeholder="0" name="assists" id="assists" type="text" class="validate" required>
                                 <label for="assists">Assists</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s4">
-                                <input placeholder="0" name="red" id="red" type="text" class="validate">
+                                <input placeholder="0" name="red" id="red" type="text" class="validate" required>
                                 <label for="red">Red Cards</label>
                             </div>
 
                             <div class="input-field col s4">
-                                <input placeholder="0" name="yellow" id="yellow" type="text" class="validate">
+                                <input placeholder="0" name="yellow" id="yellow" type="text" class="validate" required>
                                 <label for="yellow">Yellow Cards</label>
                             </div>
 
