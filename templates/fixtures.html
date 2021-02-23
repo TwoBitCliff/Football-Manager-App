@@ -1,84 +1,97 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- Add if tatement for Home/ Away teams -->
-
 <!-- Fixtures Table -->
-<table>
+
+<div class="row">
+    <div class="col s12 m6 offset-m3">
+        <div class="card-panel teal">
+            <table>
+                <thead>
+                    <h1 class="title">Fixtures</h1>
+                    <tr>
+                        <th></th>
+                        <th>Date</th>
+                        <th>Home</th>
+                        <th>Kick Off</th>
+                        <th>Away</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    {% for fixture in fixtures %}
+                    {% if session.user|lower == fixture.created_by|lower %}
+
+                    {% if fixture.home_goals == "null" %}
+                    <tr>
+                        <td><a href="{{ url_for('update_fixture', fixture_id=fixture._id) }}"
+                                class="btn hide-on-small-only"><i class="fas fa-user-edit"></i></a>
+                            <a href="{{ url_for('delete_fixture', fixture_id=fixture._id) }}"
+                                class="btn hide-on-small-only"><i class="fas fa-user-times"></i></a></td>
+                        <td>{{ fixture.date }}</td>
+                        <td>{{ fixture.home_team }}</td>
+                        <td>{{ fixture.kick_off }}</td>
+                        <td>{{ fixture.away_team }}</td>
+                    </tr>
+                    {% endif %}
+                    {% endif %}
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Results Table -->
+<div class="row">
+    <div class="col s12 m6 offset-m3">
+      <div class="card-panel teal">
+        <table>
     <thead>
-        <h1>Fixtures</h1>
+        <h1 class="title">Results</h1>
         <tr>
             <th></th>
             <th>Date</th>
             <th>Home</th>
-            <th>Kick Off</th>
-            <th>Away</th>
-
-        </tr>
-    </thead>
-    <tbody>
-
-
-        {% for fixture in fixtures %}
-            {% if session.user|lower == fixture.created_by|lower %}
-
-                {% if fixture.home_goals == "null" %}
-                <tr>
-                    <td><a href="{{ url_for('update_fixture', fixture_id=fixture._id) }}" class="btn hide-on-small-only"><i
-                                    class="fas fa-user-edit"></i></a>
-                            <a href="{{ url_for('delete_fixture', fixture_id=fixture._id) }}" class="btn hide-on-small-only"><i
-                                    class="fas fa-user-times"></i></a></td>
-                    <td>{{ fixture.date }}</td>
-                    <td>{{ fixture.home_team }}</td>
-                    <td>{{ fixture.kick_off }}</td>
-                    <td>{{ fixture.away_team }}</td>
-                </tr>
-                {% endif %}
-            {% endif %}
-
-        {% endfor %}
-
-    </tbody>
-
-</table>
-
-
-<!-- Results Table -->
-<table>
-    <thead>
-        <h1>Results</h1>
-        <tr>
-            <th></th>
-            <th>Date</th>
-            <th>Home</th>                        
             <th></th>
             <th>Away</th>
 
         </tr>
     </thead>
     <tbody>
-<!-- Fix edit fixtures link -->
+        <!-- Fix edit fixtures link -->
         {% for result in results %}
-            {% if session.user|lower == result.created_by|lower %}
-                {% if result.home_goals != "null" %}
-                <tr>
-                    <td><a href="{{ url_for('update_result', result_id=result._id) }}" class="btn hide-on-small-only"><i
-                                    class="fas fa-user-edit"></i></a>
-                            <a href="{{ url_for('delete_result', result_id=result._id) }}" class="btn hide-on-small-only"><i
-                                    class="fas fa-user-times"></i></a></td>
-                    <td>{{ result.date }}</td>
-                    <td>{{ result.home_team }}</td>
-                    <td>{{ result.home_goals }} - {{ result.away_goals }}</td>
-                    <td>{{ result.away_team }}</td>
-                </tr>
-                {% endif %}
-            {% endif %}
-            
+        {% if session.user|lower == result.created_by|lower %}
+        {% if result.home_goals != "null" %}
+        <tr>
+            <td><a href="{{ url_for('update_result', result_id=result._id) }}" class="btn hide-on-small-only"><i
+                        class="fas fa-user-edit"></i></a>
+                <a href="{{ url_for('delete_result', result_id=result._id) }}" class="btn hide-on-small-only"><i
+                        class="fas fa-user-times"></i></a></td>
+            <td>{{ result.date }}</td>
+            <td>{{ result.home_team }}</td>
+            <td>{{ result.home_goals }} - {{ result.away_goals }}</td>
+            <td>{{ result.away_team }}</td>
+        </tr>
+        {% endif %}
+        {% endif %}
+
         {% endfor %}
 
     </tbody>
 
 </table>
+      </div>
+    </div>
+  </div>
+            
+
+
 
 
 {% endblock %}
