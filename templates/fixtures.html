@@ -50,48 +50,56 @@
 <!-- Results Table -->
 <div class="row">
     <div class="col s12 m6 offset-m3">
-      <div class="card-panel teal">
-        <table>
-    <thead>
-        <h1 class="title">Results</h1>
-        <tr>
-            <th></th>
-            <th>Date</th>
-            <th>Home</th>
-            <th></th>
-            <th>Away</th>
+        <div class="card-panel teal">
+            <table>
+                <thead>
+                    <h1 class="title">Results</h1>
+                    <tr>
+                        <th></th>
+                        <th>Date</th>
+                        <th>Home</th>
+                        <th></th>
+                        <th>Away</th>
 
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Fix edit fixtures link -->
-        {% for result in results %}
-        {% if session.user|lower == result.created_by|lower %}
-        {% if result.home_goals != "null" %}
-        <tr>
-            <td><a href="{{ url_for('update_result', result_id=result._id) }}" class="btn hide-on-small-only"><i
-                        class="fas fa-user-edit"></i></a>
-                <a href="{{ url_for('delete_result', result_id=result._id) }}" class="btn hide-on-small-only"><i
-                        class="fas fa-user-times"></i></a></td>
-            <td>{{ result.date }}</td>
-            <td>{{ result.home_team }}</td>
-            <td>{{ result.home_goals }} - {{ result.away_goals }}</td>
-            <td>{{ result.away_team }}</td>
-        </tr>
-        {% endif %}
-        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Fix edit fixtures link -->
+                    {% for result in results %}
+                    {% if session.user|lower == result.created_by|lower %}
+                    {% if result.home_goals != "null" %}
+                    <tr>
+                        <td><a href="{{ url_for('update_result', result_id=result._id) }}"
+                                class="btn hide-on-small-only"><i class="fas fa-user-edit"></i></a>
+                            <a href="{{ url_for('delete_result', result_id=result._id) }}"
+                                class="btn hide-on-small-only"><i class="fas fa-user-times"></i></a></td>
+                        <td>{{ result.date }}</td>
+                        <td>{{ result.home_team }}</td>
+                        <td>{{ result.home_goals }} - {{ result.away_goals }}</td>
+                        <td>{{ result.away_team }}</td>
+                    </tr>
+                    {% endif %}
+                    {% endif %}
 
-        {% endfor %}
+                    {% endfor %}
 
-    </tbody>
+                </tbody>
 
-</table>
-      </div>
+            </table>
+        </div>
     </div>
-  </div>
-            
+</div>
 
+<!-- Create Fixtures button -->
 
-
+<div class="row">
+    <div class="col m4 offset-m4">
+        <a href="{{ url_for('add_fixture') }}">
+            <button type="submit" class="col s12 btn-large teal darken-1">
+                Create Fixture
+            </button>
+        </a>
+    </div>
+</div>
 
 {% endblock %}
