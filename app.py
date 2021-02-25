@@ -55,7 +55,7 @@ def edit_manager(manager_id):
 @app.route("/")
 @app.route("/get_squad")
 def get_squad():
-    squad = mongo.db.squad.find()
+    squad = mongo.db.squad.find().sort("last_name", 1)
     return render_template("squad.html", squad=squad)
 
 
@@ -69,8 +69,8 @@ def search_player():
 @app.route("/")
 @app.route("/get_fixtures")
 def get_fixtures():
-    fixtures = mongo.db.fixtures.find()
-    results = mongo.db.fixtures.find()
+    fixtures = mongo.db.fixtures.find().sort("date", 1)
+    results = mongo.db.fixtures.find().sort("date", 1)
     return render_template("fixtures.html", fixtures=fixtures, results=results)
 
 
@@ -252,7 +252,8 @@ def update_player(player_id):
             "red": request.form.get("red"),
             "email": request.form.get("email"),
             "contact_number": request.form.get("contact_number"),
-            "injured": injured
+            "injured": injured,
+            "created_by": session["user"]
         }
         mongo.db.squad.update({"_id": ObjectId(player_id)}, submit)
         flash("Player Successfully Updated")
