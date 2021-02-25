@@ -64,21 +64,13 @@ def register():
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password"))
         }
-        user = {
-            "first_name": "null",
-            "last_name": "null",
-            "team_name": "null",
-            "email": "null",
-            "contact_number": "null",
-            "created_by": session["user"]
-        }
+
         mongo.db.users.insert_one(register)
-        mongo.db.managers.insert_one(user)
 
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
-        return redirect(url_for("profile", username=session["user"]))
+        return redirect(url_for("add_manager"))
     return render_template("signup.html")
 
 
@@ -104,6 +96,25 @@ def profile(username):
             "profile.html", username=username, managers=managers)
 
     return redirect(url_for("log_in"))
+
+
+# Add New Manager details on Login 
+@app.route("/add_manager", methods=["GET", "POST"])
+def add_manager():
+    if request.method == "POST":
+        manager = {
+            "first_name": request.form.get("first_name"),
+            "last_name": request.form.get("last_name"),
+            "team_name": request.form.get("team_name"),
+            "email": request.form.get("email"),
+            "contact_number": request.form.get("contact_number"),
+            "created_by": session["user"]
+        }
+        mongo.db.managers.insert_one(manager)
+        flash("Manager Successfully Updated")
+        return redirect(url_for("profile", username=session["user"]))
+    manager = mongo.db.managers.find()
+    return render_template("add_manager.html", manager=manager)
 
 
 # Edits Manager Details
