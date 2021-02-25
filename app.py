@@ -64,11 +64,21 @@ def register():
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password"))
         }
+        user = {
+            "first_name": "null",
+            "last_name": "null",
+            "team_name": "null",
+            "email": "null",
+            "contact_number": "null",
+            "created_by": session["user"]
+        }
         mongo.db.users.insert_one(register)
+        mongo.db.managers.insert_one(user)
 
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
+        return redirect(url_for("profile", username=session["user"]))
     return render_template("signup.html")
 
 
