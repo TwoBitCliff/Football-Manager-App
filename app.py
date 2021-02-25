@@ -18,85 +18,8 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-@app.route("/profile/<username>", methods=["GET", "POST"])
-def profile(username):
-    # grab the session user's username from db
-    managers = mongo.db.managers.find()
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-
-    if session["user"]:
-        return render_template(
-            "profile.html", username=username, managers=managers)
-
-    return redirect(url_for("log_in"))
-
-
-@app.route("/edit_manager/<manager_id>", methods=["GET", "POST"])
-def edit_manager(manager_id):
-    if request.method == "POST":
-        submit = {
-            "first_name": request.form.get("first_name"),
-            "last_name": request.form.get("last_name"),
-            "team_name": request.form.get("team_name"),
-            "email": request.form.get("email"),
-            "contact_number": request.form.get("contact_number"),
-            "created_by": session["user"]
-        }
-        mongo.db.managers.update({"_id": ObjectId(manager_id)}, submit)
-        flash("Manager Successfully Updated")
-        return redirect(url_for('profile', username=session['user']))
-    manager = mongo.db.managers.find_one({"_id": ObjectId(manager_id)})
-    managers = mongo.db.managers.find()
-    return render_template(
-        "edit_manager.html", manager=manager, managers=managers)
-
-
+# Login Function
 @app.route("/")
-@app.route("/get_squad")
-def get_squad():
-    squad = mongo.db.squad.find().sort("last_name", 1)
-    return render_template("squad.html", squad=squad)
-
-
-@app.route("/search_player", methods=["GET", "POST"])
-def search_player():
-    search = request.form.get("search")
-    squad = mongo.db.squad.find({"$text": {"$search": search}})
-    return render_template("squad.html", squad=squad)
-
-
-@app.route("/")
-@app.route("/get_fixtures")
-def get_fixtures():
-    fixtures = mongo.db.fixtures.find().sort("date", 1)
-    results = mongo.db.fixtures.find().sort("date", 1)
-    return render_template("fixtures.html", fixtures=fixtures, results=results)
-
-
-@app.route("/register", methods=["GET", "POST"])
-def register():
-    if request.method == "POST":
-        # check if username already exists in db
-        existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
-
-        if existing_user:
-            flash("Username already exists")
-            return redirect(url_for("register"))
-
-        register = {
-            "username": request.form.get("username").lower(),
-            "password": generate_password_hash(request.form.get("password"))
-        }
-        mongo.db.users.insert_one(register)
-
-        # put the new user into 'session' cookie
-        session["user"] = request.form.get("username").lower()
-        flash("Registration Successful!")
-    return render_template("signup.html")
-
-
 @app.route("/log_in", methods=["GET", "POST"])
 def log_in():
     if request.method == "POST":
@@ -125,6 +48,31 @@ def log_in():
     return render_template("login.html")
 
 
+# Register Function
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        # check if username already exists in db
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            flash("Username already exists")
+            return redirect(url_for("register"))
+
+        register = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+        mongo.db.users.insert_one(register)
+
+        # put the new user into 'session' cookie
+        session["user"] = request.form.get("username").lower()
+        flash("Registration Successful!")
+    return render_template("signup.html")
+
+
+# Logout Function
 @app.route("/logout")
 def logout():
     # remove user from session cookie
@@ -133,81 +81,58 @@ def logout():
     return redirect(url_for("log_in"))
 
 
-@app.route("/add_fixture", methods=["GET", "POST"])
-def add_fixture():
-    if request.method == "POST":
-        fixture = {
-            "home_team": request.form.get("home_team"),
-            "away_team": request.form.get("away_team"),
-            "date": request.form.get("date"),
-            "kick_off": request.form.get("kick_off"),
-            "home_goals": "null",
-            "away_goals": "null",
-            "created_by": session["user"]
-        }
-        mongo.db.fixtures.insert_one(fixture)
-        flash("Fixture Successfully Added")
-        return redirect(url_for("get_fixtures"))
-    fixture = mongo.db.fixtures.find()
-    return render_template("add_fixture.html", fixture=fixture)
+# Displays Profile
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    # grab the session user's username from db
+    managers = mongo.db.managers.find()
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+
+    if session["user"]:
+        return render_template(
+            "profile.html", username=username, managers=managers)
+
+    return redirect(url_for("log_in"))
 
 
-@app.route("/udpate_fixture/<fixture_id>", methods=["GET", "POST"])
-def update_fixture(fixture_id):
+# Edits Manager Details
+@app.route("/edit_manager/<manager_id>", methods=["GET", "POST"])
+def edit_manager(manager_id):
     if request.method == "POST":
         submit = {
-            "home_team": request.form.get("home_team"),
-            "away_team": request.form.get("away_team"),
-            "date": request.form.get("date"),
-            "kick_off": request.form.get("kick_off"),
-            "home_goals": request.form.get("home_goals"),
-            "away_goals": request.form.get("away_goals"),
+            "first_name": request.form.get("first_name"),
+            "last_name": request.form.get("last_name"),
+            "team_name": request.form.get("team_name"),
+            "email": request.form.get("email"),
+            "contact_number": request.form.get("contact_number"),
             "created_by": session["user"]
         }
-        mongo.db.fixtures.update({"_id": ObjectId(fixture_id)}, submit)
-        flash("Fixture Successfully Updated")
-        return redirect(url_for("get_fixtures"))
-    fixture = mongo.db.fixtures.find_one({"_id": ObjectId(fixture_id)})
-    fixtures = mongo.db.fixtures.find()
+        mongo.db.managers.update({"_id": ObjectId(manager_id)}, submit)
+        flash("Manager Successfully Updated")
+        return redirect(url_for('profile', username=session['user']))
+    manager = mongo.db.managers.find_one({"_id": ObjectId(manager_id)})
+    managers = mongo.db.managers.find()
     return render_template(
-        "edit_fixture.html", fixture=fixture, fixtures=fixtures)
+        "edit_manager.html", manager=manager, managers=managers)
 
 
-@app.route("/delete_fixture/<fixture_id>")
-def delete_fixture(fixture_id):
-    mongo.db.fixtures.remove({"_id": ObjectId(fixture_id)})
-    flash("Fixture Successfully Deleted")
-    return redirect(url_for("get_fixtures"))
+# Displays Squad
+@app.route("/get_squad")
+def get_squad():
+    squad = mongo.db.squad.find().sort("last_name", 1)
+    return render_template("squad.html", squad=squad)
 
 
-@app.route("/udpate_result/<result_id>", methods=["GET", "POST"])
-def update_result(result_id):
-    if request.method == "POST":
-        submit = {
-            "home_team": request.form.get("home_team"),
-            "away_team": request.form.get("away_team"),
-            "date": request.form.get("date"),
-            "kick_off": request.form.get("kick_off"),
-            "home_goals": request.form.get("home_goals"),
-            "away_goals": request.form.get("away_goals"),
-            "created_by": session["user"]
-        }
-        mongo.db.fixtures.update({"_id": ObjectId(result_id)}, submit)
-        flash("Result Successfully Updated")
-        return redirect(url_for("get_fixtures"))
-    result = mongo.db.fixtures.find_one({"_id": ObjectId(result_id)})
-    results = mongo.db.fixtures.find()
-    return render_template(
-        "edit_result.html", result=result, results=results)
+# Search Squad Function
+@app.route("/search_player", methods=["GET", "POST"])
+def search_player():
+    search = request.form.get("search")
+    squad = mongo.db.squad.find({"$text": {"$search": search}})
+    return render_template("squad.html", squad=squad)
 
 
-@app.route("/delete_result/<result_id>")
-def delete_result(result_id):
-    mongo.db.fixtures.remove({"_id": ObjectId(result_id)})
-    flash("Result Successfully Deleted")
-    return redirect(url_for("get_fixtures"))
-
-
+# Add player Function
 @app.route("/add_player", methods=["GET", "POST"])
 def add_player():
     if request.method == "POST":
@@ -235,6 +160,7 @@ def add_player():
     return render_template("squad.html", squad=squad)
 
 
+# Update Player Function
 @app.route("/udpate_player/<player_id>", methods=["GET", "POST"])
 def update_player(player_id):
     if request.method == "POST":
@@ -263,11 +189,100 @@ def update_player(player_id):
     return render_template("edit_player.html", player=player, squad=squad)
 
 
+# Delete Player Function
 @app.route("/delete_player/<player_id>")
 def delete_player(player_id):
     mongo.db.squad.remove({"_id": ObjectId(player_id)})
     flash("Player Successfully Deleted")
     return redirect(url_for("get_squad"))
+
+
+# Displays Fixtures and Results
+@app.route("/get_fixtures")
+def get_fixtures():
+    fixtures = mongo.db.fixtures.find().sort("date", 1)
+    results = mongo.db.fixtures.find().sort("date", 1)
+    return render_template("fixtures.html", fixtures=fixtures, results=results)
+
+
+# Add Fixture Function
+@app.route("/add_fixture", methods=["GET", "POST"])
+def add_fixture():
+    if request.method == "POST":
+        fixture = {
+            "home_team": request.form.get("home_team"),
+            "away_team": request.form.get("away_team"),
+            "date": request.form.get("date"),
+            "kick_off": request.form.get("kick_off"),
+            "home_goals": "null",
+            "away_goals": "null",
+            "created_by": session["user"]
+        }
+        mongo.db.fixtures.insert_one(fixture)
+        flash("Fixture Successfully Added")
+        return redirect(url_for("get_fixtures"))
+    fixture = mongo.db.fixtures.find()
+    return render_template("add_fixture.html", fixture=fixture)
+
+
+# Update Fixture Function
+@app.route("/udpate_fixture/<fixture_id>", methods=["GET", "POST"])
+def update_fixture(fixture_id):
+    if request.method == "POST":
+        submit = {
+            "home_team": request.form.get("home_team"),
+            "away_team": request.form.get("away_team"),
+            "date": request.form.get("date"),
+            "kick_off": request.form.get("kick_off"),
+            "home_goals": request.form.get("home_goals"),
+            "away_goals": request.form.get("away_goals"),
+            "created_by": session["user"]
+        }
+        mongo.db.fixtures.update({"_id": ObjectId(fixture_id)}, submit)
+        flash("Fixture Successfully Updated")
+        return redirect(url_for("get_fixtures"))
+    fixture = mongo.db.fixtures.find_one({"_id": ObjectId(fixture_id)})
+    fixtures = mongo.db.fixtures.find()
+    return render_template(
+        "edit_fixture.html", fixture=fixture, fixtures=fixtures)
+
+
+# Delete Fixture Function
+@app.route("/delete_fixture/<fixture_id>")
+def delete_fixture(fixture_id):
+    mongo.db.fixtures.remove({"_id": ObjectId(fixture_id)})
+    flash("Fixture Successfully Deleted")
+    return redirect(url_for("get_fixtures"))
+
+
+# Update Result Function
+@app.route("/udpate_result/<result_id>", methods=["GET", "POST"])
+def update_result(result_id):
+    if request.method == "POST":
+        submit = {
+            "home_team": request.form.get("home_team"),
+            "away_team": request.form.get("away_team"),
+            "date": request.form.get("date"),
+            "kick_off": request.form.get("kick_off"),
+            "home_goals": request.form.get("home_goals"),
+            "away_goals": request.form.get("away_goals"),
+            "created_by": session["user"]
+        }
+        mongo.db.fixtures.update({"_id": ObjectId(result_id)}, submit)
+        flash("Result Successfully Updated")
+        return redirect(url_for("get_fixtures"))
+    result = mongo.db.fixtures.find_one({"_id": ObjectId(result_id)})
+    results = mongo.db.fixtures.find()
+    return render_template(
+        "edit_result.html", result=result, results=results)
+
+
+# Delete Result Function
+@app.route("/delete_result/<result_id>")
+def delete_result(result_id):
+    mongo.db.fixtures.remove({"_id": ObjectId(result_id)})
+    flash("Result Successfully Deleted")
+    return redirect(url_for("get_fixtures"))
 
 
 if __name__ == "__main__":
