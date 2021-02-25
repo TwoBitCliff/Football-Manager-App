@@ -1,26 +1,11 @@
-body {
-    background-color: #f0f0f0;
-}
-
-nav ul li {
-    font-size: 120px;
-       
-}
-
-.nav-icon{
-    margin-right: 10px;
-}
-
-.input-field.col label, .input-field.col {
-    color: white;
-}
-
+/* Buttons */
 .submit-btn{
     font-weight: 500;
     font-size: 25px;
     color: #00897b;
 }
 
+/* Colours */
 .red-card{
     background-color: red;
     color: red;
@@ -39,11 +24,29 @@ nav ul li {
     color: green;
 }
 
+.input-field.col label, .input-field.col {
+    color: white;
+}
+
+body {
+    background-color: #f0f0f0;
+}
+
+/* Text */
 .title{
     text-align: center;
     color: #f0f0f0;
 }
 
+nav ul li {
+    font-size: 120px;       
+}
+
+/* Misc */
 th, td {
     text-align: center;
+}
+
+.nav-icon{
+    margin-right: 10px;
 }
