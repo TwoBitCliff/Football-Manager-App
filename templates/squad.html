@@ -20,228 +20,136 @@
             </form>
         </div>
     </div>
-    <div class="row">
-        <div class="col m10 offset-m1 s12">
-            <table>
-                <thead>
-                    <tr>
-                        <th class="hide-on-small-only"></th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th class="hide-on-med-and-down">Age</th>
-                        <th>Position</th>
-                        <th class="hide-on-med-and-down">Foot</th>
-                        <th>Apps</th>
-                        <th>Goals</th>
-                        <th class="hide-on-med-and-down">Assists</th>
-                        <th><i class="fas fa-square red-card fa-2x"></i></th>
-                        <th><i class="fas fa-square yellow-card fa-2x"></i></th>
-                        <th class="hide-on-med-and-down">Injued</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                    {% for player in squad %}
-                    {% if session.user|lower == player.created_by|lower %}
-                    <tr>
-                        <td>
-                            <!-- Modal Trigger -->
-                            <!-- <a href="{{ url_for('update_player', player_id=player._id) }}"><button data-target="modal1" class="btn modal-trigger"><i
+</div>
+<div class="row">
+    <div class="col m10 offset-m1 s12">
+        <table>
+            <thead>
+                <tr>
+                    <th class="hide-on-small-only"></th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th class="hide-on-med-and-down">Age</th>
+                    <th>Position</th>
+                    <th class="hide-on-med-and-down">Foot</th>
+                    <th>Apps</th>
+                    <th>Goals</th>
+                    <th class="hide-on-med-and-down">Assists</th>
+                    <th><i class="fas fa-square red-card fa-2x"></i></th>
+                    <th><i class="fas fa-square yellow-card fa-2x"></i></th>
+                    <th class="hide-on-med-and-down">Injued</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for player in squad %}
+                {% if session.user|lower == player.created_by|lower %}
+                <tr>
+                    <td>
+                        <!-- Modal Trigger -->
+                        <!-- <a href="{{ url_for('update_player', player_id=player._id) }}"><button data-target="modal1" class="btn modal-trigger"><i
                                     class="far fa-edit"></i></button>
                         </a> -->
-                            <a href="{{ url_for('update_player', player_id=player._id) }}" class="btn hide-on-small-only"><i
-                                    class="fas fa-user-edit"></i></a>
-                            <a href="{{ url_for('delete_player', player_id=player._id) }}" class="btn hide-on-small-only"><i
-                                    class="fas fa-user-times"></i></a></td>
-                        <td>{{ player.first_name.capitalize() }}</td>
-                        <td>{{ player.last_name.capitalize() }}</td>
-                        <td class="hide-on-med-and-down">{{ player.age }}</td>
-                        <td>{{ player.position }}</td>
-                        <td class="hide-on-med-and-down">{{ player.foot }}</td>
-                        <td>{{ player.played }}</td>
-                        <td>{{ player.goals }}</td>
-                        <td class="hide-on-med-and-down">{{ player.assists }}</td>
-                        <td>{{ player.yellow }}</td>
-                        <td>{{ player.red }}</td>
-                        <td class="hide-on-med-and-down">
-                            {% if player.injured == "on" %}
-                            <i class="fas fa-user-injured fa-2x injured"></i>
-                            {% else %}
-                            <i class="fas fa-user-injured fa-2x uninjuerd"></i>
-                            {% endif %}
+                        <a href="{{ url_for('update_player', player_id=player._id) }}" class="btn hide-on-small-only"><i
+                                class="fas fa-user-edit"></i></a>
+                        <a href="{{ url_for('delete_player', player_id=player._id) }}" class="btn hide-on-small-only"><i
+                                class="fas fa-user-times"></i></a></td>
+                    <td>{{ player.first_name.capitalize() }}</td>
+                    <td>{{ player.last_name.capitalize() }}</td>
+                    <td class="hide-on-med-and-down">{{ player.age }}</td>
+                    <td>{{ player.position }}</td>
+                    <td class="hide-on-med-and-down">{{ player.foot }}</td>
+                    <td>{{ player.played }}</td>
+                    <td>{{ player.goals }}</td>
+                    <td class="hide-on-med-and-down">{{ player.assists }}</td>
+                    <td>{{ player.yellow }}</td>
+                    <td>{{ player.red }}</td>
+                    <td class="hide-on-med-and-down">
+                        {% if player.injured == "on" %}
+                        <i class="fas fa-user-injured fa-2x injured"></i>
+                        {% else %}
+                        <i class="fas fa-user-injured fa-2x uninjuerd"></i>
+                        {% endif %}
 
-                        </td>
-                    </tr>
-                    {% endif %}
+                    </td>
+                </tr>
+                {% endif %}
 
-                    {% endfor %}
+                {% endfor %}
 
-                </tbody>
+            </tbody>
 
-            </table>
+        </table>
 
-        </div>
     </div>
-    <div class="container">
-        <ul class="collapsible">
-            <li>
-                <div class="collapsible-header">Register Player</div>
-                <div class="collapsible-body">
-                    <form class="col s12" method="POST" action="{{ url_for('add_player') }}">
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input placeholder="Thierry" name="first_name" id="first_name" type="text"
-                                    class="validate" required>
-                                <label for="first_name">First Name</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input placeholder="Henry" name="last_name" id="last_name" type="text"
-                                    class="validate" required>
-                                <label for="last_name">Last Name</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s4">
-                                <input placeholder="28" name="age" id="age" type="number" class="validate" required>
-                                <label for="age">Age</label>
-                            </div>
-
-                            <div class="input-field col s4">
-                                <input placeholder="STR" name="position" id="position" type="text" class="validate" required>
-                                <label for="position">Position</label>
-                            </div>
-
-                            <div class="input-field col s4">
-                                <input placeholder="Right" name="foot" id="foot" type="text" class="validate" required>
-                                <label for="foot">Foot</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s4">
-                                <input placeholder="0" name="played" id="played" type="text" class="validate" required>
-                                <label for="played">Appearances</label>
-                            </div>
-
-                            <div class="input-field col s4">
-                                <input placeholder="0" name="goals" id="goals" type="text" class="validate" required>
-                                <label for="goals">Goals</label>
-                            </div>
-
-                            <div class="input-field col s4">
-                                <input placeholder="0" name="assists" id="assists" type="text" class="validate" required>
-                                <label for="assists">Assists</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s4">
-                                <input placeholder="0" name="red" id="red" type="text" class="validate" required>
-                                <label for="red">Red Cards</label>
-                            </div>
-
-                            <div class="input-field col s4">
-                                <input placeholder="0" name="yellow" id="yellow" type="text" class="validate" required>
-                                <label for="yellow">Yellow Cards</label>
-                            </div>
-
-                            <div class="input-field col s4">
-                                <div class="switch">
-                                    <label for="injured">
-                                        <input type="checkbox" id="injured" name="injured">
-                                        <span class="lever"></span>
-                                        Injured?
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input placeholder="01234567891" name="contact_number" id="contact_number" type="tel"
-                                    class="validate">
-                                <label for="contact_number">Contact Number</label>
-                            </div>
-
-                            <div class="input-field col s6">
-                                <input placeholder="a.wenger@arsenal.co.uk" name="email" id="email" type="email"
-                                    class="validate">
-                                <label for="email">Email</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <button type="submit" class="col s12 btn-large teal darken-1">
-                                Register
-                            </button>
-                        </div>
-
-                    </form>
-                </div>
-            </li>
-
-        </ul>
-    </div>
-
-
-    <!-- Modal Structure -->
-    <!-- <div id="modal1" class="modal">
-    <div class="modal-content">
-        <form class="col s12" method="POST" action="#">
+</div>
+<div class="container teal">
+    <ul class="collapsible ">
+        <li>
+            <div class="collapsible-header">Register Player</div>
+            <div class="collapsible-body">
+                <form class="col s12" method="POST" action="{{ url_for('add_player') }}">
                     <div class="row">
                         <div class="input-field col s6">
-                            <input placeholder="Arsène" name="first_name_update" id="first_name_update" type="text" class="validate">
-                            <label for="first_name_update">First Name</label>
+                            <input placeholder="Thierry" name="first_name" id="first_name" type="text" class="validate"
+                                required>
+                            <label for="first_name">First Name</label>
                         </div>
                         <div class="input-field col s6">
-                            <input placeholder="Wenger" name="last_name_update" id="last_name_update" type="text" class="validate">
-                            <label for="last_name_update">Last Name</label>
+                            <input placeholder="Henry" name="last_name" id="last_name" type="text" class="validate"
+                                required>
+                            <label for="last_name">Last Name</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s4">
-                            <input placeholder="28" name="age_update" id="age_update" type="number" class="validate">
-                            <label for="age_update">Age</label>
+                            <input placeholder="28" name="age" id="age" type="number" class="validate" required>
+                            <label for="age">Age</label>
                         </div>
 
                         <div class="input-field col s4">
-                            <input placeholder="STR" name="position_update" id="position_update" type="text" class="validate">
-                            <label for="position_update">Position</label>
+                            <input placeholder="STR" name="position" id="position" type="text" class="validate"
+                                required>
+                            <label for="position">Position</label>
                         </div>
 
                         <div class="input-field col s4">
-                            <input placeholder="Right" name="foo_updatet" id="foot_update" type="text" class="validate">
-                            <label for="foot_update">Foot</label>
+                            <input placeholder="Right" name="foot" id="foot" type="text" class="validate" required>
+                            <label for="foot">Foot</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s4">
-                            <input placeholder="0" name="played_update" id="played_update" type="text" class="validate">
-                            <label for="played_update">Appearances</label>
+                            <input placeholder="0" name="played" id="played" type="text" class="validate" required>
+                            <label for="played">Appearances</label>
                         </div>
 
                         <div class="input-field col s4">
-                            <input placeholder="0" name="goals_update" id="goals_update" type="text" class="validate">
-                            <label for="goals_update">Goals</label>
+                            <input placeholder="0" name="goals" id="goals" type="text" class="validate" required>
+                            <label for="goals">Goals</label>
                         </div>
 
                         <div class="input-field col s4">
-                            <input placeholder="0" name="assists_update" id="assists_update" type="text" class="validate">
-                            <label for="assists_update">Assists</label>
+                            <input placeholder="0" name="assists" id="assists" type="text" class="validate" required>
+                            <label for="assists">Assists</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s4">
-                            <input placeholder="0" name="red_update" id="red_update" type="text" class="validate">
-                            <label for="red_update">Red Cards</label>
+                            <input placeholder="0" name="red" id="red" type="text" class="validate" required>
+                            <label for="red">Red Cards</label>
                         </div>
 
                         <div class="input-field col s4">
-                            <input placeholder="0" name="yellow_update" id="yellow_update" type="text" class="validate">
-                            <label for="yellow_update">Yellow Cards</label>
+                            <input placeholder="0" name="yellow" id="yellow" type="text" class="validate" required>
+                            <label for="yellow">Yellow Cards</label>
                         </div>
 
                         <div class="input-field col s4">
                             <div class="switch">
                                 <label for="injured">
-                                    <input type="checkbox" id="injured_update" name="injured_update">
-                                    <span class="lever_update"></span>
+                                    <input type="checkbox" id="injured" name="injured">
+                                    <span class="lever"></span>
                                     Injured?
                                 </label>
                             </div>
@@ -249,25 +157,29 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input placeholder="01234567891" name="contact_number_update" id="contact_number_update" type="tel"
+                            <input placeholder="01234567891" name="contact_number" id="contact_number" type="tel"
                                 class="validate">
-                            <label for="contact_number_update">Contact Number</label>
+                            <label for="contact_number">Contact Number</label>
                         </div>
 
                         <div class="input-field col s6">
-                            <input placeholder="a.wenger@arsenal.co.uk" name="email_update" id="email_update" type="email"
+                            <input placeholder="a.wenger@arsenal.co.uk" name="email" id="email" type="email"
                                 class="validate">
-                            <label for="email_update">Email</label>
+                            <label for="email">Email</label>
                         </div>
                     </div>
                     <div class="row">
                         <button type="submit" class="col s12 btn-large teal darken-1">
-                            Update
+                            Register
                         </button>
                     </div>
 
                 </form>
-            <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-            </div> -->
-    {% endblock %}
+            </div>
+        </li>
+
+    </ul>
+</div>
+
+
+{% endblock %}
