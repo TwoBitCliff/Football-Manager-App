@@ -1,4 +1,4 @@
-# Entunepreneurs
+# Squad Management
 
 [View the live website here](https://squad-management-app.herokuapp.com/)
 
