@@ -2,51 +2,56 @@
 {% block content %}
 
 <div class="row">
-    <div class="col s12 m4 offset-m4">
+    <div class="col s12 m8 offset-m2 l4 offset-l4">
         <div class="card-panel teal">
             <h1 class="title">Update Result</h1>
             <br>
             <div class="row">
                 <form class="col s12" method="POST" action="{{ url_for('update_result', result_id=result._id) }}">
-        <table>
-            <thead>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><input value="{{ result.home_team }}" name="home_team" id="home_team" type="int"></td>
-                    <td> <input value="{{ result.home_goals }}" name="home_goals" id="home_goals" type="int"
-                            class="validate"></td>
-                    <td> <input value="{{ result.away_goals }}" name="away_goals" id="away_goals" type="int"
-                            class="validate"></td>
-                    <td><input value="{{ result.away_team }}" name="away_team" id="away_team" type="int"></td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="row">
-            <div class="col m6">
-                <input value="{{ result.date }}" id="date" name="date" type="text" class="datepicker validate"
-                    required>
-                <label for="date">Date</label>
-            </div>
-            <div class="col m6">
-                <input value="{{ result.kick_off }}" id="kick_off" name="kick_off" type="text"
-                    class="timepicker validate" required>
-                <label for="kick_off">Kick Off</label>
-            </div>
-            <div class="row">
-                <button type="submit" class="col s12 btn-large teal darken-1">
-                    Update
-                </button>
-            </div>
-        </div>
-    </form>
-                <a href="{{url_for('get_fixtures') }}"><button type="submit" class="col s12 btn-large teal darken-1">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input value="{{ result.home_team }}" name="home_team" id="home_team" type="int" size="15">
+                                </td>
+                                <td><input value="{{ result.away_team }}" name="away_team" id="away_team" type="int" size="15">
+                                </td>
+                                  </tr>
+                                <tr>
+                                <td> <input value="{{ result.home_goals }}" name="home_goals" id="home_goals" type="int" size="15"
+                                        class="validate"></td>
+                                      
+                                <td> <input value="{{ result.away_goals }}" name="away_goals" id="away_goals" type="int" size="15"
+                                        class="validate"></td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col s6">
+                            <input value="{{ result.date }}" id="date" name="date" type="text"
+                                class="datepicker validate" required>
+                            <label for="date">Date</label>
+                        </div>
+                        <div class="col s6">
+                            <input value="{{ result.kick_off }}" id="kick_off" name="kick_off" type="text"
+                                class="timepicker validate" required>
+                            <label for="kick_off">Kick Off</label>
+                        </div>
+                        
+                        <div class="row">
+                            <button type="submit" class="col s10 offset-s1 btn-large teal darken-1">
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <a href="{{url_for('get_fixtures') }}"><button type="submit" class="col s10 offset-s1 btn-large teal darken-1">
                         Cancel
                     </button>
                 </a>
@@ -54,9 +59,5 @@
         </div>
     </div>
 </div>
-<!-- <div class="row"> -->
 
-
-
-
-    {% endblock %}
+{% endblock %}

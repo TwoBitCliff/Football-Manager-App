@@ -43,3 +43,7 @@ nav ul li {
     text-align: center;
     color: #f0f0f0;
 }
+
+th, td {
+    text-align: center;
+}

@@ -2,14 +2,14 @@
 {% block content %}
 
 <div class="row">
-    <div class="col s12 m4 offset-m4">
+    <div class="col s12 m8 offset-m2 l4 offset-l4">
         <div class="card-panel teal">
             {% for manager in managers %}
 
             {% if session.user|lower == manager.created_by|lower %}
 
             <h1 class="title">{{ manager.team_name.upper() }}</h1>
-            <br>
+            <hr>
             <h2 class="title">{{ manager.first_name.capitalize() }} {{ manager.last_name.capitalize() }}</h2>
             <br>
             <div class="row">
