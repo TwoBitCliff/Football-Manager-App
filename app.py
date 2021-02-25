@@ -98,7 +98,7 @@ def profile(username):
     return redirect(url_for("log_in"))
 
 
-# Add New Manager details on Login 
+# Add New Manager details on Login
 @app.route("/add_manager", methods=["GET", "POST"])
 def add_manager():
     if request.method == "POST":
