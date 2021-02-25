@@ -1,55 +1,65 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="row">
-    <div class="col m2 offset-m5"><h1>Update User</h1></div>
-</div>
+
 
 <div class="row">
-    <div class="col s12 m6 offset-m3">
-        <form class="col s12" method="POST" action="{{ url_for('edit_manager', manager_id=manager._id) }}">
+    <div class="col s12 m10 offset-m1 l6 offset-l3">
+        <div class="card-panel teal">
             <div class="row">
-                <div class="input-field col s6">
-                    <input value="{{ manager.first_name.capitalize() }}" name="first_name" id="first_name" type="text"
-                        class="validate">
-                    <label for="first_name">First Name</label>
-                </div>
-                <div class="input-field col s6">
-                    <input value="{{ manager.last_name.capitalize() }}" name="last_name" id="last_name" type="text"
-                        class="validate">
-                    <label for="last_name">Last Name</label>
-                </div>
-                <div class="input-field col s6">
-                    <input value="{{ manager.team_name.upper() }}" name="team_name" id="team_name" type="text"
-                        class="validate">
-                    <label for="last_name">Team Name</label>
-                </div>
-            </div>          
-            <div class="row">
-                <div class="input-field col s6">
-                    <input value="{{ manager.contact_number }}" name="contact_number" id="contact_number" type="tel"
-                        class="validate">
-                    <label for="contact_number">Contact Number</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <input value="{{ manager.email }}" name="email" id="email" type="email" class="validate">
-                    <label for="email">Email</label>
+                <div class="title">
+                    <h1>Update User</h1>
                 </div>
             </div>
             <div class="row">
-                <button type="submit" class="col s12 btn-large teal darken-1">
-                    Update
-                </button>
+                <form class="col s12" method="POST" action="{{ url_for('edit_manager', manager_id=manager._id) }}">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input value="{{ manager.first_name.capitalize() }}" name="first_name" id="first_name"
+                                type="text" class="validate">
+                            <label for="first_name">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input value="{{ manager.last_name.capitalize() }}" name="last_name" id="last_name"
+                                type="text" class="validate">
+                            <label for="last_name">Last Name</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input value="{{ manager.team_name.upper() }}" name="team_name" id="team_name" type="text"
+                                class="validate">
+                            <label for="last_name">Team Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input value="{{ manager.contact_number }}" name="contact_number" id="contact_number"
+                                type="tel" class="validate">
+                            <label for="contact_number">Contact Number</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input value="{{ manager.email }}" name="email" id="email" type="email" class="validate">
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="col s12 btn-large teal darken-1">
+                            Update
+                        </button>
+                    </div>
+
+
+                </form>
             </div>
             <div class="row">
-                <a href="{{ url_for('profile', username=session['user']) }}"><button type="submit" class="col s12 btn-large teal darken-1">
+                <a href="{{ url_for('profile', username=session['user']) }}"><button type="submit"
+                        class="col s10 offset-s1 btn-large teal darken-1">
                         Cancel
                     </button>
                 </a>
             </div>
-
-        </form>
+        </div>
     </div>
+
 
 </div>
 {% endblock %}
