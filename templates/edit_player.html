@@ -1,106 +1,118 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="row">
-    <div class="col m2 offset-m5"><h1>Update Player</h1></div>
-</div>
+
 
 <div class="row">
-    <div class="col s12 m6 offset-m3">
-        <form class="col s12" method="POST" action="{{ url_for('update_player', player_id=player._id) }}">
+    <div class="col s12 m10 offset-m1 l6 offset-l3">
+        <div class="card-panel teal">
             <div class="row">
-                <div class="input-field col s6">
-                    <input value="{{ player.first_name.capitalize() }}" name="first_name" id="first_name" type="text"
-                        class="validate">
-                    <label for="first_name">First Name</label>
-                </div>
-                <div class="input-field col s6">
-                    <input value="{{ player.last_name.capitalize() }}" name="last_name" id="last_name" type="text"
-                        class="validate">
-                    <label for="last_name">Last Name</label>
+                <div class="title">
+                    <h1>Update Player</h1>
                 </div>
             </div>
+            <br>
             <div class="row">
-                <div class="input-field col s4">
-                    <input value="{{ player.age }}" name="age" id="age" type="number" class="validate">
-                    <label for="age">Age</label>
-                </div>
-
-                <div class="input-field col s4">
-                    <input value="{{ player.position }}" name="position" id="position" type="text" class="validate">
-                    <label for="position">Position</label>
-                </div>
-
-                <div class="input-field col s4">
-                    <input value="{{ player.foot }}" name="foot" id="foot" type="text" class="validate">
-                    <label for="foot">Foot</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s4">
-                    <input value="{{ player.played }}" name="played" id="played" type="text" class="validate">
-                    <label for="played">Appearances</label>
-                </div>
-
-                <div class="input-field col s4">
-                    <input value="{{ player.goals }}" name="goals" id="goals" type="text" class="validate">
-                    <label for="goals">Goals</label>
-                </div>
-
-                <div class="input-field col s4">
-                    <input value="{{ player.assists }}" name="assists" id="assists" type="text" class="validate">
-                    <label for="assists">Assists</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s4">
-                    <input value="{{ player.red }}" name="red" id="red" type="text" class="validate">
-                    <label for="red">Red Cards</label>
-                </div>
-
-                <div class="input-field col s4">
-                    <input value="{{ player.yellow }}" name="yellow" id="yellow" type="text" class="validate">
-                    <label for="yellow">Yellow Cards</label>
-                </div>
-
-                <div class="input-field col s4">
-                    <div class="switch">
-                        <label for="injured">
-                            {% if player.injured == "on" %}
-                            <input type="checkbox" id="injured" name="injured" checked>
-                            {% else %}
-                            <input type="checkbox" id="injured" name="injured">
-                            {% endif %}
-                            <span class="lever"></span>
-                            Injured?
-                        </label>
+                <form class="col s12" method="POST" action="{{ url_for('update_player', player_id=player._id) }}">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input value="{{ player.first_name.capitalize() }}" name="first_name" id="first_name"
+                                type="text" class="validate">
+                            <label for="first_name">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input value="{{ player.last_name.capitalize() }}" name="last_name" id="last_name"
+                                type="text" class="validate">
+                            <label for="last_name">Last Name</label>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s6">
-                    <input value="{{ player.contact_number }}" name="contact_number" id="contact_number" type="tel"
-                        class="validate">
-                    <label for="contact_number">Contact Number</label>
-                </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input value="{{ player.age }}" name="age" id="age" type="number" class="validate">
+                            <label for="age">Age</label>
+                        </div>
 
-                <div class="input-field col s6">
-                    <input value="{{ player.email }}" name="email" id="email" type="email" class="validate">
-                    <label for="email">Email</label>
-                </div>
-            </div>
-            <div class="row">
-                <button type="submit" class="col s12 btn-large teal darken-1">
-                    Update
-                </button>
-            </div>
-            <div class="row">
-                <a href="{{url_for('get_squad') }}"><button type="submit" class="col s12 btn-large teal darken-1">
-                        Cancel
-                    </button>
-                </a>
-            </div>
+                        <div class="input-field col s4">
+                            <input value="{{ player.position }}" name="position" id="position" type="text"
+                                class="validate">
+                            <label for="position">Position</label>
+                        </div>
 
-        </form>
+                        <div class="input-field col s4">
+                            <input value="{{ player.foot }}" name="foot" id="foot" type="text" class="validate">
+                            <label for="foot">Foot</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input value="{{ player.played }}" name="played" id="played" type="text" class="validate">
+                            <label for="played">Appearances</label>
+                        </div>
+
+                        <div class="input-field col s4">
+                            <input value="{{ player.goals }}" name="goals" id="goals" type="text" class="validate">
+                            <label for="goals">Goals</label>
+                        </div>
+
+                        <div class="input-field col s4">
+                            <input value="{{ player.assists }}" name="assists" id="assists" type="text"
+                                class="validate">
+                            <label for="assists">Assists</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input value="{{ player.red }}" name="red" id="red" type="text" class="validate">
+                            <label for="red">Red Cards</label>
+                        </div>
+
+                        <div class="input-field col s4">
+                            <input value="{{ player.yellow }}" name="yellow" id="yellow" type="text" class="validate">
+                            <label for="yellow">Yellow Cards</label>
+                        </div>
+
+                        <div class="input-field col s4">
+                            <div class="switch">
+                                <label for="injured">
+                                    {% if player.injured == "on" %}
+                                    <input type="checkbox" id="injured" name="injured" checked>
+                                    {% else %}
+                                    <input type="checkbox" id="injured" name="injured">
+                                    {% endif %}
+                                    <span class="lever"></span>
+                                    Injured?
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input value="{{ player.contact_number }}" name="contact_number" id="contact_number"
+                                type="tel" class="validate">
+                            <label for="contact_number">Contact Number</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input value="{{ player.email }}" name="email" id="email" type="email" class="validate">
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="col s12 btn-large teal darken-1">
+                            Update
+                        </button>
+                    </div>
+                   
+
+                </form>
+                 <div class="row">
+                        <a href="{{url_for('get_squad') }}"><button type="submit"
+                                class="col s10 offset-s1 btn-large teal darken-1">
+                                Cancel
+                            </button>
+                        </a>
+                    </div>
+            </div>
+        </div>
     </div>
 
 </div>
