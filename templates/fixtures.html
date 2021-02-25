@@ -59,6 +59,8 @@
                         <th>Date</th>
                         <th>Home</th>
                         <th></th>
+                        <th></th>
+                        <th></th>
                         <th>Away</th>
 
                     </tr>
@@ -75,12 +77,13 @@
                                 class="btn hide-on-small-only"><i class="fas fa-user-times"></i></a></td>
                         <td>{{ result.date }}</td>
                         <td>{{ result.home_team }}</td>
-                        <td>{{ result.home_goals }} - {{ result.away_goals }}</td>
+                        <td>{{ result.home_goals }}</td>
+                        <td>-</td>
+                        <td>{{ result.away_goals }}</td>
                         <td>{{ result.away_team }}</td>
                     </tr>
                     {% endif %}
                     {% endif %}
-
                     {% endfor %}
 
                 </tbody>
