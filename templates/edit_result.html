@@ -29,22 +29,22 @@
                                 class="timepicker validate" required>
                             <label for="kick_off">Kick Off</label>
                         </div>
-
-                        <div class="row">
-                            <button type="submit" class="col s10 offset-s1 btn-large teal darken-1">
-                                Update
-                            </button>
-                        </div>
                     </div>
-                </form>
-                <a href="{{url_for('get_fixtures') }}"><button type="submit"
-                        class="col s10 offset-s1 btn-large teal darken-1">
-                        Cancel
-                    </button>
-                </a>
-            </div>
+                    <div class="row">
+                        <button type="submit" class="col s10 offset-s1 btn-large teal darken-1">
+                            Update
+                        </button>
+                    </div>
+            
+            </form>
+            <a href="{{url_for('get_fixtures') }}"><button type="submit"
+                    class="col s10 offset-s1 btn-large teal darken-1">
+                    Cancel
+                </button>
+            </a>
         </div>
     </div>
+</div>
 </div>
 
 {% endblock %}

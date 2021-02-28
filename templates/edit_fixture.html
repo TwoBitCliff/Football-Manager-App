@@ -8,11 +8,13 @@
             <br>
             <div class="row">
                 <form class="col s12" method="POST" action="{{ url_for('update_fixture', fixture_id=fixture._id) }}">
-                    
+
                     <div class="row">
                         <div class="col s4 center-align">{{ fixture.home_team }}</div>
-                        <div class="col s2 center-align"><input name="away_goals" id="away_goals" type="int" class="validate" size="1"></div>
-                        <div class="col s2 center-align"><input name="home_goals" id="home_goals" type="int" class="validate" size="1"></div>
+                        <div class="col s2 center-align"><input name="away_goals" id="away_goals" type="int"
+                                class="validate" size="1"></div>
+                        <div class="col s2 center-align"><input name="home_goals" id="home_goals" type="int"
+                                class="validate" size="1"></div>
                         <div class="col s4 center-align">{{ fixture.away_team }}</div>
                     </div>
                     <div class="row">
@@ -26,13 +28,14 @@
                                 class="timepicker validate" required>
                             <label for="kick_off">Kick Off</label>
                         </div>
-                        <div class="row">
-                            <button type="submit" class="col s12 btn-large teal darken-1">
-                                Update
-                            </button>
-                        </div>
-
                     </div>
+                    <div class="row">
+                        <button type="submit" class="col s12 btn-large teal darken-1">
+                            Update
+                        </button>
+                    </div>
+
+
 
                 </form>
                 <a href="{{url_for('get_fixtures') }}"><button type="submit" class="col s12 btn-large teal darken-1">
