@@ -12,7 +12,7 @@
 						<i class="fas fa-user-plus prefix teal-text text-darken-1"></i>
 						<input id="username" name="username" type="text" minlength="5"
                             maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
-						<label for="username">Username</label>
+						<label  class="teal-text" for="username">Username</label>
 					</div>
                 </div>
                 <!-- passowrd -->
@@ -21,7 +21,7 @@
 						<i class="fas fa-user-lock prefix teal-text text-darken-1"></i>
                         <input id="password" name="password" type="password" minlength="5"
                             maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
-                        <label for="password">Password</label>
+                        <label  class="teal-text" for="password">Password</label>
                     </div>
                 </div>
                 <!-- register -->
@@ -35,7 +35,7 @@
         <div class="row">
         <div class="col s12">
             <p class="center-align">
-                New Here?
+                Already registered?
                 <a href="{{ url_for('log_in') }}" class="teal-text text-darken-1">Log In</a>
             </p>
         </div>
