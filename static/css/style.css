@@ -50,3 +50,11 @@ th, td {
 .nav-icon{
     margin-right: 10px;
 }
+
+.labels{
+    color: #00897b;
+}
+
+.white-text {
+ color: white;
+}
