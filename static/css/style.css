@@ -62,3 +62,7 @@ th, td {
 .white-text {
  color: white;
 }
+
+.brand-logo {
+    margin-top: 5px;
+}
