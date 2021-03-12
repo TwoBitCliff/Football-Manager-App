@@ -11,6 +11,10 @@
     color: red;
 }
 
+label {
+    color: white;
+}
+
 .yellow-card{
     background-color: yellow;
     color: yellow;
