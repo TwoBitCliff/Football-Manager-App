@@ -7,29 +7,25 @@
 
 /* Colours */
 .red-card{
-    background-color: red;
-    color: red;
+    background-color: #ff0000;
+    color: #ff0000;
 }
 
 label {
-    color: white;
+    color: #f0f0f0;
 }
 
 .yellow-card{
-    background-color: yellow;
-    color: yellow;
+    background-color: #ffff00;
+    color: #ffff00;
 }
 
 .injured {
-    color: red;
-}
-
-.uninjuerd {
-    color: green;
+    color: #ff0000;
 }
 
 .input-field.col label, .input-field.col {
-    color: white;
+    color: f0f0f0;
 }
 
 body {
@@ -46,6 +42,9 @@ nav ul li {
     font-size: 120px;       
 }
 
+.white-text {
+ color: #f0f0f0;
+}
 /* Misc */
 th, td {
     text-align: center;
@@ -59,9 +58,6 @@ th, td {
     color: #00897b;
 }
 
-.white-text {
- color: white;
-}
 
 .brand-logo {
     margin-top: 5px;
