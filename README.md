@@ -27,16 +27,15 @@ players by bringing it all together in one place.
 ### User Stories
 
 * Returning and Frequent Visitor Goals
-    1. As a Returning or Frequent Visitor, I want to be able to sign in, log out and
-    navigate the site.
-1.  As a Returning or Frequent Visitor, I want to be able to easily manage my players, 
-and compare their stats.
-1.  As a Returning or Frequent Visitor, I want to see all upcoming fixtuers, previous 
-results and have the ability
-to edit them.
+    1. As a Returning or Frequent Visitor, I want to be able to easily sign in and log out.
+    1. As a Returning or Frequent Visitor, I want to be able to easily navigate the site.
+    1. As a Returning or Frequent Visitor, I want to be able to easily manage my players, 
+    and compare their stats.
+    1. As a Returning or Frequent Visitor, I want to see all upcoming fixtuers, previous 
+    results and have the ability to edit them.
 
 * Site Owner Goals
-    1. The Site Owner's goal is ease admin for football managers.
+1. The Site Owner's goal is ease admin for football managers.
 1.  The Site Owner's goal is to use this app for his own team.
 
 
@@ -79,8 +78,10 @@ to edit them.
 
 ### Features left to implement
 
-* In the future the author would like implement the ability to add player photos, and easily display indivdual 
+* In the future the author would like to implement the ability to add player photos, and easily display indivdual 
 player datasuch as their email and contact nummbers.
+* In the future the author would like to implement the ability to sort players by goals, appearances etc.
+* In the future the author would like to combine the manager details and the user information into the same collection.
 
 ## Technologies Used
 
@@ -118,30 +119,44 @@ player datasuch as their email and contact nummbers.
 
 ### Testing User Stories from User Experience (UX) Section
 
-**A link to testing screenshots can be found after the relevant entry.**
-
-
 * Returning and Frequent Visitor Goals
-    1. As a Returning or Frequent Visitor, I want to be able to sign in, log out and
-    navigate the site.
-1.  As a Returning or Frequent Visitor, I want to be able to easily manage my players, 
-and compare their stats.
-1.  As a Returning or Frequent Visitor, I want to see all upcoming fixtuers, previous 
-results and have the ability
-to edit them.
+    1. As a Returning or Frequent Visitor, I want to be able to easily sign in and log out.
+        1. The sight has easily sign in and log out features, as well as regestration.
+
+    1. As a Returning or Frequent Visitor, I want to be able to easily navigate the site.
+        1. The site has a simple layout, with bright colours against a white background.
+
+    1. As a Returning or Frequent Visitor, I want to be able to easily manage my players, 
+    and compare their stats.
+        1. The user can easily create and edit players, and the players are listed in a well laid out table.
+
+    1. As a Returning or Frequent Visitor, I want to see all upcoming fixtuers, previous 
+    results and have the ability to edit them.
+        1. The fixtures and results are displayed on the same page, in clear tables. When a fixture is updated,
+         it moves to the results table automatically.
 
 
 * Site Owner Goals
     1. The Site Owner's goal is ease admin for football managers.
-1.  The Site Owner's goal is to use this app for his own team.
+        1. The site gives a basic yet comprehensive ability to manage players and upcoming fixtures/ previous results.
+    1.  The Site Owner's goal is to use this app for his own team.
+        1. The site owners 5 a side team has been entered ahead of the next season.
 
 
 ### Achieved Testing
 
+    1. Throughout the project, I have been viewing my site across several devices of different sisez. This includes mobiles, tablets, a range
+     of monitors with different ratios.
+
+    1. Multiple accounts were created, along with data from each account, to ensure users only saw the relevant information, and forms inserted data correctly.
+
+    1. All links were ested to ensure they directed to the correct page.
+
+    1. Family were used to test the site to find bugs the author may have missed.
 
 ### Further Testing
 
-*
+* A test user account was created as the default user to test the site.
 
 ### Known Issues
 
