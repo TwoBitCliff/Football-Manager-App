@@ -2,7 +2,7 @@
 
 [View the live website here](https://squad-management-app.herokuapp.com/)
 
-![Homepage](#)
+![Homepage](README_files/homepage.jpg)
 
 This is my third project for the 
 Code Institute's Full Stack Developer course.
@@ -54,7 +54,7 @@ players by bringing it all together in one place.
     * No Imagery have been used across the site. Icons were taken from [Font Awesome](https://fontawesome.com/)
 
 * Wireframes
-    * [Wireframe](#)
+    * [Wireframe](https://github.com/TwoBitCliff/Football-Manager-App/blob/master/README.md)
 
 * Database Diagram
     * [Diagram](#) or here to see the live version [Live](#)
@@ -145,10 +145,12 @@ player datasuch as their email and contact nummbers.
 
 ### Achieved Testing
 
-    1. Throughout the project, I have been viewing my site across several devices of different sisez. This includes mobiles, tablets, a range
+    1. Throughout the project, I have been viewing my site across several devices of different sisez. This includes 
+    mobiles, tablets, a range
      of monitors with different ratios.
 
-    1. Multiple accounts were created, along with data from each account, to ensure users only saw the relevant information, and forms inserted data correctly.
+    1. Multiple accounts were created, along with data from each account, to ensure users only saw the relevant 
+    information, and forms inserted data correctly.
 
     1. All links were ested to ensure they directed to the correct page.
 
@@ -161,22 +163,19 @@ player datasuch as their email and contact nummbers.
 ### Known Issues
 
 
-### Screenshots across different devices
-
-
-#### Homepage
-![Homepage]()
-
 ### Validators
+
+Due to the nature of using Jinja Templating, the author felt it unnecessary to include HTML validators as they came up with
+ a host of errors. Please find the CSS validator included below.
 
 
 #### CSS
 
-![CSS Test]()
+![CSS Test](README_files/cssvalidation.jpg)
 
 #### PEP8
 
-![PEP8 Test]()
+![PEP8 Test](README_files/pep8validation.jpg)
 
 ## Deployment
 
