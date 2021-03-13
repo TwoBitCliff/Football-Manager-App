@@ -48,6 +48,12 @@ players by bringing it all together in one place.
      from the content.
 
 * Typography
+
+    * Two fonts have been used across the site.
+
+    * Raleway was used for headings and table headings.
+
+    * Poppins was used for all other text.
     
 
 * Imagery
