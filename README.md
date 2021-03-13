@@ -2,7 +2,7 @@
 
 [View the live website here](https://squad-management-app.herokuapp.com/)
 
-![Homepage](README_files/homepage.jpg)
+![Homepage](README_files/homepage.JPG)
 
 This is my third project for the 
 Code Institute's Full Stack Developer course.
@@ -171,11 +171,11 @@ Due to the nature of using Jinja Templating, the author felt it unnecessary to i
 
 #### CSS
 
-![CSS Test](README_files/cssvalidation.jpg)
+![CSS Test](README_files/cssvalidation.JPG)
 
 #### PEP8
 
-![PEP8 Test](README_files/pep8validation.jpg)
+![PEP8 Test](README_files/pep8validation.JPG)
 
 ## Deployment
 
