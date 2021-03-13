@@ -63,7 +63,7 @@ players by bringing it all together in one place.
     * [Wireframe](https://github.com/TwoBitCliff/Football-Manager-App/blob/master/README.md)
 
 * Database Diagram
-    * [Diagram](README_file/database.JPG) 
+    ![Database](README_files/database.JPG) 
 
 ## Features
 
